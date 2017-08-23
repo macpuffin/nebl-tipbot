@@ -123,7 +123,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### Set up the Slack integration: as an "outgoing webhook"
 
-* https://yoursite.slack.com/services/new/outgoing-webhook
+* https://neblio.slack.com/services/new/outgoing-webhook
 * Write down the api token they show you in this page
 * Set the trigger word, use `tipbot`
 * Set the Url to the server you'll be deploying on http://example.com:4567/tip
