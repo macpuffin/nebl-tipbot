@@ -68,10 +68,10 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `cd nebl-tipbot`
 
 * Install Ruby 2.4.0 and rvm
- * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`
+ * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`cd
 	* `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
 	* `curl -sSL https://get.rvm.io | bash -s stable`
-	* `source /home/https://github.com/NeblioTeam/nebl-tipbot/.rvm/scripts/rvm`
+	* `source /home/nebl-tipbot/.rvm/scripts/rvm`
 * `rvm install ruby-2.4.0`
 * `rvm use 2.4.0 --default`
 * `ruby -v`
@@ -137,11 +137,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `bundle`
 * `forever start message.js`
 * `forever start leaderboard.js`
-* If you want to keep the servering running use can use the unbuntu screen command
-* Enter your sudo password you made or re-entered earlier -> `su`
-* `screen`
-* `su reddcoin`
-* `RPC_USER=reddrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=reddcoin bundle exec ruby tipper.rb -p 4567`
+* `RPC_USER=neblrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=neblio bundle exec ruby tipper.rb -p 4567`
 *  Ctrl/Cmd + A + D to detach from the screen.
 
 
@@ -154,7 +150,7 @@ say any of the tipbot commands for example `tipbot hi` , `tipbot tip @username 1
 
 ## Security
 
-This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the reddcoin core wallet and SSL encryption improvement.
+This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the neblio core wallet and SSL encryption improvement.
 
 ## Credits
 Forked from [coin-agnostic tipbot](https://github.com/blocktech/slack_tipbot) by [cgcardona](https://github.com/cgcardona) along with aspects of the tutorial.
