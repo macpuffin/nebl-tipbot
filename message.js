@@ -12,10 +12,10 @@ var rtm = new RtmClient(token);
 rtm.start();
 
 rtm.on(RTM_EVENTS.TEAM_JOIN, function handleRtmTeamJoin(newmem){ console.log(newmem);
-web.chat.postMessage('#general',"Welcome <@" + newmem.user.id + "> , I am reddbot. The channels's tipbot to find out more say: reddbot help ",
+web.chat.postMessage('#general',"Welcome <@" + newmem.user.id + "> , I am the Neblio tipbot. The channels's tipbot to find out more say: tipbot help ",
    {
-     username: 'reddbot',
-     icon_emoji: ':reddcoin:',
+     username: 'tipbot',
+     icon_emoji: ':neblio:',
          },
 function(err, res) {
   if (err) {
@@ -31,8 +31,8 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 
 web.chat.postMessage(message.user,"Hello <@" + message.user + ">, how can I help you? ",
    {
-     username: 'reddbot',
-     icon_emoji: ':reddcoin:',
+     username: 'tipbot',
+     icon_emoji: ':nebliocoin:',
          },
 function(err, res) {
   if (err) {

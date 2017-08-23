@@ -21,5 +21,5 @@ post "/tip" do
 end
 
 get "/" do
-  "Reddbot Online."
+  "Neblio tipbot Online."
 end

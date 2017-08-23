@@ -13,7 +13,7 @@ class Command
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
     @params = text.split(/\s+/)
-    raise "REDDCOIN IS THE BEST" unless @params.shift == slack_params['trigger_word']
+    raise "NEBLIO IS THE BEST" unless @params.shift == slack_params['trigger_word']
     @user_name = slack_params['user_name']
     @user_id = slack_params['user_id']
     @action = @params.shift
@@ -49,8 +49,8 @@ class Command
   end
         def chart
  @result[:attachments] = [{
-      title: "Reddcoin Price Chart BTC/RDD",
-      title_link: "https://bittrex.com/market/MarketStandardChart?marketName=BTC-RDD",
+      title: "Neblio Price Chart BTC/NEBL",
+      title_link: "https://bittrex.com/market/MarketStandardChart?marketName=BTC-ETH",
       color: "#0092ff",
       footer: "https://bittrex.com/",
       footer_icon: "https://bittrex.com/Content/img/logos/bittrex-16.png",
@@ -59,7 +59,7 @@ class Command
 end
 
    def deposit
-         @result[:text] = "@#{@user_name} #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :reddbank:"
+         @result[:text] = "@#{@user_name} #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :neblio:"
         end
 
  def tip
@@ -72,11 +72,11 @@ end
 
     @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> -> <@#{target_user}> #{@amount}#{@coin_config_module::CURRENCY_ICON}"
     @result[:attachments] = [{
-      fallback:"<@#{@user_id}> -> <@#{target_user}> #{@amount}RDD :reddcoin:",
+      fallback:"<@#{@user_id}> -> <@#{target_user}> #{@amount}NEBL :neblio:",
       color: "#ED1B24",
       fields: [{
-        title: "Tipping initiated of #{@amount} RDD :reddcoin:",
-        value: "http://live.reddcoin.com/tx/#{tx}",
+        title: "Tipping initiated of #{@amount} NEBL :neblio:",
+        value: "http://explorer.nebl.io/tx/#{tx}",
         short: false
       },{
         title: "Tipper",

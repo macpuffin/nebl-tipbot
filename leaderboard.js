@@ -10,10 +10,10 @@ var rtm = new RtmClient(token);
 rtm.start();
 
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-  if (message.text === "reddbot leaderboard"|message.text === "Reddbot leaderboard") {
+  if (message.text === "tipbot leaderboard"|message.text === "Neblio tipbot leaderboard") {
     var channel = "#general";
 
-web.search.messages('Give a little to get a little, they do say? from:reddbot',
+web.search.messages('Give a little to get a little, they do say? from:tipbot',
         {
 count: '10',
         },
@@ -83,7 +83,7 @@ if (!found) {
 
 
 }
-    
+
 for (var x = 0 ; x < dict_tips.length ; x++)
 {
 var key = users[x]
@@ -175,11 +175,11 @@ var location3 = tip_top.indexOf(parseInt(recent3));
 var attach =                    [{
                                    title: 'Leaderboard',
                                    fields: [{
-                                              value: "1. <@" + users[first].slice(0,11) + ">  Tipped: " + leader + " RDD :reddcoin:"},
-                                             {value: "2. <@" + users[second].slice(0,11) + ">  Tipped: " + follower + " RDD :reddcoin:"},
-                                             {value: "3. <@" + users[third].slice(0,11) + ">  Tipped: " + bronze + " RDD :reddcoin:"},
-                                             {value: "4. <@" + users[fourth].slice(0,11) + ">  Tipped: " + four + " RDD :reddcoin:"},
-                                             {value: "5. <@" + users[fifth].slice(0,11) + ">  Tipped: " + five + " RDD :reddcoin:"},
+                                              value: "1. <@" + users[first].slice(0,11) + ">  Tipped: " + leader + " NEBL :neblio:"},
+                                             {value: "2. <@" + users[second].slice(0,11) + ">  Tipped: " + follower + " NEBL :neblio:"},
+                                             {value: "3. <@" + users[third].slice(0,11) + ">  Tipped: " + bronze + " NEBL :neblio:"},
+                                             {value: "4. <@" + users[fourth].slice(0,11) + ">  Tipped: " + four + " NEBL :neblio:"},
+                                             {value: "5. <@" + users[fifth].slice(0,11) + ">  Tipped: " + five + " NEBL :neblio:"},
                                              {title: "Upcoming Tippers",
                                              value:  "<@" + users[sixth].slice(0,11) + ">,<@" + users[seventh].slice(0,11) + ">,<@" + users[oct].slice(0,11) + ">",
                                              short: 'true'},
@@ -190,11 +190,11 @@ var attach =                    [{
                                    color: '#2BB24B'}]
 
 var table =  JSON.stringify(attach)
-                                              
+
 web.chat.postMessage(message.channel,'Tip to win a name amongst the elite.',
    {
-     username: 'reddbot',
-     icon_emoji: ':reddcoin:',
+     username: 'tipbot',
+     icon_emoji: ':neblio:',
      attachments: table,
 
          },
