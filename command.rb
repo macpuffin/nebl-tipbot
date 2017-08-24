@@ -90,7 +90,7 @@ end
     }]
   end
 
-  alias :":reddcoin:" :tip
+  alias :":neblio:" :tip
 
 
   def withdraw

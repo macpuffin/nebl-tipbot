@@ -26,7 +26,7 @@ function(err, res) {
 })});
 
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-  if (message.text === "reddbot") {
+  if (message.text === "tipbot") {
     var channel = "#test";
 
 web.chat.postMessage(message.user,"Hello <@" + message.user + ">, how can I help you? ",

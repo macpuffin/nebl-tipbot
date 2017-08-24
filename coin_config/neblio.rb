@@ -4,7 +4,7 @@ module Neblio
   PERFORM_ERROR = 'Invalid crypto command.'
   BALANCE_REPLY_PRETEXT = 'Your current balance is:'
   CURRENCY_ICON = ' NEBL :neblio:'
-  WEALTHY_UPPER_BOUND = 10000
+  WEALTHY_UPPER_BOUND = 100000
   WEALTHY_UPPER_BOUND_POSTTEXT = ' Rolling in NEBL!'
   WEALTHY_UPPER_BOUND_EMOJI = ':neblio:'
   BALANCE_REPLY_POSTTEXT = ' '
