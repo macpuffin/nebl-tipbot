@@ -36,7 +36,7 @@ class Command
 
  def balance
     balance = client.getbalance(@user_id)
-    pricei = `ruby usd.rb`
+    pricei = `ruby fiat.rb`
     x = ((balance*pricei.to_f).round(3)).to_s
 
     @result[:text] = "@#{@user_name} #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
@@ -49,11 +49,11 @@ class Command
   end
         def chart
  @result[:attachments] = [{
-      title: "Neblio Price Chart BTC/NEBL",
-      title_link: "https://bittrex.com/market/MarketStandardChart?marketName=BTC-ETH",
+      title: "Neblio Price Chart",
+      title_link: "https://coinmarketcap.com/currencies/neblio/#charts",
       color: "#0092ff",
-      footer: "https://bittrex.com/",
-      footer_icon: "https://bittrex.com/Content/img/logos/bittrex-16.png",
+      footer: "https://coinmarketcap.com/",
+      footer_icon: "https://files.coinmarketcap.com/static/img/coins/16x16/neblio.png",
       attachment_type: "default",
 }]
 end
@@ -109,7 +109,7 @@ end
     @amount = amount.to_f
     randomize_amount if (@amount == "random")
 
-    raise @coin_config_module::TOO_POOR_TEXT + @coin_config_module::FEE unless available_balance >= @amount + 1
+    raise @coin_config_module::TOO_POOR_TEXT + @coin_config_module::FEE unless available_balance >= @amount + 0.0001
     raise @coin_config_module::NO_PURPOSE_LOWER_BOUND_TEXT if @amount < @coin_config_module::NO_PURPOSE_LOWER_BOUND
   end
 

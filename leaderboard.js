@@ -11,7 +11,7 @@ rtm.start();
 
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
   if (message.text === "tipbot leaderboard"|message.text === "Neblio tipbot leaderboard") {
-    var channel = "#general";
+    var channel = "#chat";
 
 web.search.messages('Give a little to get a little, they do say? from:tipbot',
         {

@@ -17,7 +17,7 @@ module Neblio
   WITHDRAW_TEXT = 'Tired of being the charitable type!?'
   WITHDRAW_ICON = ':neblio:'
   NETWORKINFO_ICON = ':bar_chart:'
-  TOO_POOR_TEXT = 'Insufficient funds, you must have at least 1 NEBL left over after your tip. '
+  TOO_POOR_TEXT = 'Insufficient funds, you must have at least 0.0001 NEBL left over after your tip. '
   PRICE_PRE = 'The current price of NEBL is: '
   HELP = 'Commands are used by saying tipbot and one of the following: deposit, balance, tip, withdraw, leaderboard,  price, chart or about.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'You call that a tip?'
