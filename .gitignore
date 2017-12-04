@@ -5,3 +5,7 @@
 *.swn
 *.DS_STORE
 .gitignore
+*.lock
+node-slack-sdk/
+
+
