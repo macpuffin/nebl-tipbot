@@ -12,6 +12,21 @@ documentx = Nokogiri::HTML(percent)
 
 fix = documentx.xpath("/html/body/div[6]/div/div[1]/div[4]/div[2]/span[2]/span[1]").inner_html
 b = fix.gsub(/\s+/, "")
+
+n = fix.to_i
+
 x = " Δ #{b}%"
+
 c= "$#{k}"
+
+if n > 0
+    x = " :arrow_up_small: #{b}%"
+elsif n > 10
+    x = " :arrow_double_up: #{b}%"
+elsif n < 0
+    x = " :arrow_down_small: #{b}%"
+elsif n < -10
+    x = " :arrow_double_down: #{b}%"
+end
+
 print c ; print x
