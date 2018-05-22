@@ -3,12 +3,14 @@ require 'bitcoin-client'
 require 'net/http'
 require 'sinatra'
 require 'json'
+require 'nokogiri'
+require 'open-uri'
 
 Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor  :result, :action, :user_name, :icon_emoji , :channel
-  ACTIONS = %w(leaderboard balance chart deposit tip withdraw about price help hi commands)
+  ACTIONS = %w(leaderboard balance chart deposit tip withdraw about price help hi commands stats)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -36,7 +38,10 @@ class Command
 
  def balance
     balance = client.getbalance(@user_id)
-    pricei = `ruby fiat.rb`
+    checkprice = open( "https://coinmarketcap.com/currencies/neblio/")
+    document2 = Nokogiri::HTML(checkprice)
+    priceusd = document2.xpath("/html/body/div[6]/div/div[1]/div[4]/div[2]/span[1]/span[1]").inner_html
+    pricei = priceusd.to_i
     x = ((balance*pricei.to_f).round(3)).to_s
 
     @result[:text] = "@#{@user_name} #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
@@ -161,6 +166,21 @@ end
 
     @result[:text] = "#{ACTIONS.join(', ' )}"
   end
+
+ def stats
+	 checkprice2 = open( "https://coinmarketcap.com/currencies/neblio/")
+	 document3 = Nokogiri::HTML(checkprice2)
+	 position = document3.xpath("/html/body/div[4]/div/div[1]/div[4]/div[2]/ul/li[1]/small/span").inner_html
+	 volume = document3.xpath("/html/body/div[4]/div/div[1]/div[4]/div[1]/div[2]/div[2]/span[1]/span[1]").inner_html
+	 marketcap = document3.xpath("/html/body/div[4]/div/div[1]/div[4]/div[1]/div[1]/div[2]/span[1]/span[1]").inner_html
+	 
+	 volume2 =  volume.gsub(/\s+/, "")
+	 marketcap2 = marketcap.gsub(/\s+/, "")
+	 position2 = position.gsub(/\s+/, "")
+	 
+	@result[:text] = "NEBL :neblio: is #{@price}, #{position2} with a Market Cap of $#{marketcap2} and a 24Hr Volume of $#{volume2}"
+
+end
 
 
 end
