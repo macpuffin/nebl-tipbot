@@ -44,7 +44,7 @@ class Command
     pricei = priceusd.to_i
     x = ((balance*pricei.to_f).round(3)).to_s
 
-    @result[:text] = "@#{@user_name} #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
+    @result[:text] = "@#{@user_id} #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
     if balance > @coin_config_module::WEALTHY_UPPER_BOUND
       @result[:text] += @coin_config_module::WEALTHY_UPPER_BOUND_POSTTEXT
       @result[:icon_emoji] = @coin_config_module::WEALTHY_UPPER_BOUND_EMOJI
@@ -64,7 +64,7 @@ class Command
 end
 
    def deposit
-         @result[:text] = "@#{@user_name} #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :neblio:"
+         @result[:text] = "@#{@user_id} #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :neblio:"
         end
 
  def tip
@@ -102,7 +102,7 @@ end
     address = @params.shift
     set_amount
     tx = client.sendfrom @user_id, address, @amount
-    @result[:text] = "@#{@user_name} #{@coin_config_module::WITHDRAW_TEXT} <@#{@user_id}> -> #{address} #{@amount}#{@coin_config_module::CURRENCY_ICON} "
+    @result[:text] = "#{@coin_config_module::WITHDRAW_TEXT} <@#{@user_id}> -> #{address} #{@amount}#{@coin_config_module::CURRENCY_ICON} "
     @result[:text] += " (<#{@coin_config_module::TIP_POSTTEXT1}#{tx}#{@coin_config_module::TIP_POSTTEXT2}>)"
     @result[:icon_emoji] = @coin_config_module::WITHDRAW_ICON
   end
@@ -156,7 +156,7 @@ end
 
 def hi
 
-@result[:text] = " #{@coin_config_module::HI} @#{@user_name} #{@coin_config_module::GREETING}"
+@result[:text] = " #{@coin_config_module::HI} @#{@user_id} #{@coin_config_module::GREETING}"
 end
 
 def about
