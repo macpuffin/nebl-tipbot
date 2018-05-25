@@ -19,7 +19,7 @@ module Neblio
   NETWORKINFO_ICON = ':bar_chart:'
   TOO_POOR_TEXT = 'Insufficient funds, you must have at least 0.0001 NEBL left over after your tip. '
   PRICE_PRE = 'The current price of NEBL :neblio: is: '
-  HELP = 'Commands are used by saying tipbot and one of the following: deposit, balance, tip, withdraw, leaderboard,  price, chart or about.'
+  HELP = 'Commands are used by saying tipbot and one of the following: deposit, balance, tip, withdraw, leaderboard,  price, chart or about. Try my friend `Trifbot` if you want to tip in NTP1 tokens.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'You call that a tip?'
   NO_PURPOSE_LOWER_BOUND = 0.000001
   HI = 'Greetings'
