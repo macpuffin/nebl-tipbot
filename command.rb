@@ -40,7 +40,7 @@ class Command
     balance = client.getbalance(@user_id)
     checkprice = open( "https://coinmarketcap.com/currencies/neblio/")
     document2 = Nokogiri::HTML(checkprice)
-    priceusd = document2.xpath("/html/body/div[2]/div/div[1]/div[4]/div[2]/span[1]/span[1]").inner_html
+    priceusd = document2.xpath("//*[@id="quote_price"]/span[1]").inner_html
     pricei = priceusd.to_i
     x = ((balance*pricei.to_f).round(3)).to_s
 
@@ -170,9 +170,9 @@ end
  def stats
 	 checkprice2 = open( "https://coinmarketcap.com/currencies/neblio/")
 	 document3 = Nokogiri::HTML(checkprice2)
-	 position = document3.xpath("/html/body/div[2]/div/div[1]/div[5]/div[2]/ul/li[1]/span[2]").inner_html
-	 volume = document3.xpath("/html/body/div[2]/div/div[1]/div[5]/div[1]/div[2]/div/span[1]/span[1]").inner_html
-	 marketcap = document3.xpath("/html/body/div[2]/div/div[1]/div[5]/div[1]/div[1]/div/span[1]/span[1]").inner_html
+	 position = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/ul/li[1]/span[2]").inner_html
+	 volume = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/div[2]/div[2]/div/span[1]/span[1]").inner_html
+	 marketcap = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/div[2]/div[1]/div/span[1]/span[1]").inner_html
 	 
 	 volume2 =  volume.gsub(/\s+/, "")
 	 marketcap2 = marketcap.gsub(/\s+/, "")
