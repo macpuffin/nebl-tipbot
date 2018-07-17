@@ -20,8 +20,6 @@ class Command
     @user_id = slack_params['user_id']
     @action = @params.shift
     @result = {}
-    @price = `ruby fiat.rb `
-    @sh = `./disp.sh`
     end
 
  def perform
@@ -38,13 +36,12 @@ class Command
 
  def balance
     balance = client.getbalance(@user_id)
-    checkprice = open( "https://coinmarketcap.com/currencies/neblio/")
-    document2 = Nokogiri::HTML(checkprice)
-    priceusd = document2.xpath("//*[@id="quote_price"]/span[1]").inner_html
+    checkprice = JSON.parse(open("https://api.coinmarketcap.com/v2/ticker/1955/?convert=BTC").read)
+    priceusd = checkprice["data"]["quotes"]["USD"]["price"]
     pricei = priceusd.to_i
-    x = ((balance*pricei.to_f).round(3)).to_s
+    x = ((balance*pricei.to_f).round(2)).to_s
 
-    @result[:text] = "<@#{@user_id}> #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
+    @result[:text] = "<@#{@user_id}> #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance.round(8)}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
     if balance > @coin_config_module::WEALTHY_UPPER_BOUND
       @result[:text] += @coin_config_module::WEALTHY_UPPER_BOUND_POSTTEXT
       @result[:icon_emoji] = @coin_config_module::WEALTHY_UPPER_BOUND_EMOJI
@@ -139,8 +136,34 @@ end
   end
 
  def price
-        @result[:text] = "#{@coin_config_module::PRICE_PRE}#{@sh} BTC :bitcoin:"
-        @result[:text] += " ≈ #{@price}"
+        checkprice = JSON.parse(open("https://api.coinmarketcap.com/v2/ticker/1955/?convert=BTC").read)
+        priceusd = checkprice["data"]["quotes"]["USD"]["price"]
+        usdchange = checkprice["data"]["quotes"]["USD"]["percent_change_24h"]
+        pricebtc = checkprice["data"]["quotes"]["BTC"]["price"]
+        btcchange = checkprice["data"]["quotes"]["BTC"]["percent_change_24h"]
+        usdarrow = ""
+        btcarrow = ""
+        if usdchange.to_f > 0.00
+          usdarrow = " :arrow_up_small: "
+        elsif usdchange.to_f > 10
+          usdarrow = " :arrow_double_up: "
+        elsif usdchange.to_f < 0.00
+          usdarrow = " :arrow_down_small: "
+        elsif usdchange.to_f < -10
+          usdarrow = " :arrow_double_down: "
+        end
+
+        if btcchange.to_f > 0.00
+          btcarrow = " :arrow_up_small: "
+        elsif btcchange.to_f > 10
+          btcarrow = " :arrow_double_up: "
+        elsif btcchange.to_f < 0.00
+          btcarrow = " :arrow_down_small: "
+        elsif btcchange.to_f < -10
+          btcarrow = " :arrow_double_down: "
+        end
+
+        @result[:text] = "#{@coin_config_module::PRICE_PRE}$#{priceusd.round(2)} #{usdarrow}#{usdchange.round(2)}%  -  #{pricebtc.round(8)}BTC :bitcoin: #{btcarrow}#{btcchange.round(2)}%"
 end
 
 
@@ -168,17 +191,19 @@ end
   end
 
  def stats
-	 checkprice2 = open( "https://coinmarketcap.com/currencies/neblio/")
-	 document3 = Nokogiri::HTML(checkprice2)
-	 position = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/ul/li[1]/span[2]").inner_html
-	 volume = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/div[2]/div[2]/div/span[1]/span[1]").inner_html
-	 marketcap = document3.xpath("/html/body/div[2]/div/div[1]/div[4]/div[2]/div[1]/div/span[1]/span[1]").inner_html
+	checkprice = JSON.parse(open("https://api.coinmarketcap.com/v2/ticker/1955/?convert=BTC").read)
+        priceusd = checkprice["data"]["quotes"]["USD"]["price"]
+	position = checkprice["data"]["rank"]
+	volume = checkprice["data"]["quotes"]["USD"]["volume_24h"]
+	marketcap = checkprice["data"]["quotes"]["USD"]["market_cap"]
+
+        mc = marketcap.to_s.split('.')
+        mc[0].gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
+
+        vol = volume.to_s.split('.')
+        vol[0].gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
 	 
-	 volume2 =  volume.gsub(/\s+/, "")
-	 marketcap2 = marketcap.gsub(/\s+/, "")
-	 position2 = position.gsub(/\s+/, "")
-	 
-	@result[:text] = "NEBL :neblio: is #{@price}, #{position2} with a Market Cap of $#{marketcap2} and a 24Hr Volume of $#{volume2}"
+	@result[:text] = "NEBL :neblio: is $#{priceusd.round(2)}, rank #{position} with a Market Cap of $#{mc[0]} and a 24Hr Volume of $#{vol[0]}"
 
 end
 

@@ -7,5 +7,5 @@
 .gitignore
 *.lock
 node-slack-sdk/
-
+node_modules/
 
