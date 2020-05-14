@@ -10,10 +10,10 @@ var rtm = new RtmClient(token);
 rtm.start();
 
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-  if (message.text === "tipbot leaderboard"|message.text === "Neblio tipbot leaderboard") {
+  if (message.text === "tipbot leaderboard"|message.text === "MacPuffins tipbot leaderboard") {
     var channel = "#chat";
 
-web.search.messages('Give a little to get a little, they do say? from:tipbot',
+web.search.messages('Spreadin cheer, we is. from:tipbot',
         {
 count: '10',
         },
@@ -175,11 +175,11 @@ var location3 = tip_top.indexOf(parseInt(recent3));
 var attach =                    [{
                                    title: 'Leaderboard',
                                    fields: [{
-                                              value: "1. <@" + users[first].slice(0,11) + ">  Tipped: " + leader + " NEBL :neblio:"},
-                                             {value: "2. <@" + users[second].slice(0,11) + ">  Tipped: " + follower + " NEBL :neblio:"},
-                                             {value: "3. <@" + users[third].slice(0,11) + ">  Tipped: " + bronze + " NEBL :neblio:"},
-                                             {value: "4. <@" + users[fourth].slice(0,11) + ">  Tipped: " + four + " NEBL :neblio:"},
-                                             {value: "5. <@" + users[fifth].slice(0,11) + ">  Tipped: " + five + " NEBL :neblio:"},
+                                              value: "1. <@" + users[first].slice(0,11) + ">  Tipped: " + leader + " PFN :macpuffins:"},
+                                             {value: "2. <@" + users[second].slice(0,11) + ">  Tipped: " + follower + " PFN :macpuffins:"},
+                                             {value: "3. <@" + users[third].slice(0,11) + ">  Tipped: " + bronze + " PFN :macpuffins:"},
+                                             {value: "4. <@" + users[fourth].slice(0,11) + ">  Tipped: " + four + " PFN :macpuffins:"},
+                                             {value: "5. <@" + users[fifth].slice(0,11) + ">  Tipped: " + five + " PFN :macpuffins:"},
                                              {title: "Upcoming Tippers",
                                              value:  "<@" + users[sixth].slice(0,11) + ">,<@" + users[seventh].slice(0,11) + ">,<@" + users[oct].slice(0,11) + ">",
                                              short: 'true'},
