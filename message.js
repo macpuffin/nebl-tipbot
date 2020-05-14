@@ -12,10 +12,10 @@ var rtm = new RtmClient(token);
 rtm.start();
 
 rtm.on(RTM_EVENTS.TEAM_JOIN, function handleRtmTeamJoin(newmem){ console.log(newmem);
-web.chat.postMessage('#chat',"Welcome <@" + newmem.user.id + "> , I am the Neblio tipbot. The channels's tipbot to find out more say: tipbot help ",
+web.chat.postMessage('#chat',"Hows she goin, <@" + newmem.user.id + "> ? I am the MacPuffin tipbot on Slack. To find out more say: tipbot help ",
    {
      username: 'tipbot',
-     icon_emoji: ':neblio:',
+     icon_emoji: ':macpuffins:',
          },
 function(err, res) {
   if (err) {
@@ -32,7 +32,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 web.chat.postMessage(message.user,"Hello <@" + message.user + ">, how can I help you? ",
    {
      username: 'tipbot',
-     icon_emoji: ':nebliocoin:',
+     icon_emoji: ':macpuffins:',
          },
 function(err, res) {
   if (err) {
