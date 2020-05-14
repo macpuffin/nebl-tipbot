@@ -15,7 +15,7 @@ class Command
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
     @params = text.split(/\s+/)
-    raise "NEBLIO IS THE BEST" unless @params.shift == slack_params['trigger_word']
+    raise "MacPuffin TipBot" unless @params.shift == slack_params['trigger_word']
     @user_name = slack_params['user_name']
     @user_id = slack_params['user_id']
     @action = @params.shift
@@ -52,16 +52,16 @@ class Command
         def chart
  @result[:attachments] = [{
       title: "Neblio Price Chart",
-      title_link: "https://coinmarketcap.com/currencies/neblio/#charts",
+      title_link: "https://coinmarketcap.com/currencies/macpuffins/#charts",
       color: "#0092ff",
       footer: "https://coinmarketcap.com/",
-      footer_icon: "https://files.coinmarketcap.com/static/img/coins/16x16/neblio.png",
+      footer_icon: "https://files.coinmarketcap.com/static/img/coins/16x16/macpuffins.png",
       attachment_type: "default",
 }]
 end
 
    def deposit
-         @result[:text] = "<@#{@user_id}> #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :neblio:"
+         @result[:text] = "<@#{@user_id}> #{@coin_config_module::DEPOSIT_PRETEXT} #{user_address(@user_id)} #{@coin_config_module::DEPOSIT_POSTTEXT} :macpuffins:"
         end
 
  def tip
@@ -74,11 +74,11 @@ end
 
     @result[:text] = "#{@coin_config_module::TIP_PRETEXT} <@#{@user_id}> -> <@#{target_user}> #{@amount}#{@coin_config_module::CURRENCY_ICON}"
     @result[:attachments] = [{
-      fallback:"<@#{@user_id}> -> <@#{target_user}> #{@amount}NEBL :neblio:",
+      fallback:"<@#{@user_id}> -> <@#{target_user}> #{@amount}PFN :macpuffins:",
       color: "#ED1B24",
       fields: [{
-        title: "Tipping initiated of #{@amount} NEBL :neblio:",
-        value: "http://explorer.nebl.io/tx/#{tx}",
+        title: "Tipping initiated of #{@amount} PFN :macpuffins:",
+        value: "http://explorer.macpuffins.com/tx/#{tx}",
         short: false
       },{
         title: "Tipper",
