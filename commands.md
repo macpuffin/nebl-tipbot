@@ -1,6 +1,6 @@
-# Neblio tipbot Commands
+# MacPuffins TipBot Commands
 ​
-This document provides a list of commands for the tipbot in the Neblio Slack channels.
+This document provides a list of commands for the tipbot in the MacPuffin Coin Slack channel.
 ​
 In order to not spam general discussion, please get familiar with those commands on the ‘random’ channel.
 ​
@@ -10,7 +10,7 @@ In order to not spam general discussion, please get familiar with those commands
 ​
 ###### deposit
 ​
-` tipbot deposit ` This command will display your bot deposit address. You then need to transfer NEBL to this address.
+` tipbot deposit ` This command will display your bot deposit address. You may transfer PFN to this address.
 ​
 ###### balance
 ​
@@ -22,20 +22,20 @@ In order to not spam general discussion, please get familiar with those commands
 ​
 ###### withdraw
 ​
-` tipbot withdraw <address> <amount> ` This command will withdraw the specified amount of NEBL from your bot wallet to the specified destination address.
+` tipbot withdraw <address> <amount> ` This command will withdraw the specified amount of PFN from your bot wallet to the specified destination address.
 Note: no brackets ‘<>’ around address or amount
 ​
 ###### price
 ​
-` tipbot price ` This command gives you the current NEBL price (BTC and $)
+` tipbot price ` This command gives you the current PFN price (BTC and $)as they are available
 ​
 ###### chart
 ​
-` tipbot chart ` This command will lead you to Bittrex BTC-NEBL market chart
+` tipbot chart ` This command will lead you to BTC-PFN market charts as they are available
 ​
 ######  leaderboard
 ​
-` tipbot leaderboard ` This command will show you the highscore's for the sum amount of NEBL tipped from each user, who has particpated in tipping.
+` tipbot leaderboard ` This command will show you the highscore's for the sum amount of PFN tipped from each user, who has particpated in tipping.
 ​
 ###### about
 ​
