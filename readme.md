@@ -1,6 +1,6 @@
-# Tipbot - Slack Neblio Tipbot.
+# Tipbot for Slack - MacPuffins Tipbot.
 
-#### Neblio crypto currency tipbot for [Slack](https://slack.com)
+#### MacPuffins cryptocurrency tipbot for [Slack](https://slack.com)
 
 ## Setup
 
@@ -11,7 +11,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 #### Create droplet
 
 * Go to digitalocean.com and create a new droplet
-  * hostname: nebl-tipbot
+  * hostname: pfn-tipbot
   * Size
     * Pick either w/ 2GB/2CPUs $20 a month or w/ 1GB/1CPUs $10 a month.
   * Region
@@ -39,14 +39,14 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * `ns3.digitalocean.com`
 * In digitalocean's `DNS` section set an `A-Record` for your `hostname` from your previous step
   * Make the `hostname` be the name of your app
-    * `nebl-tipbot`
+    * `pfn-tipbot`
   * Make the IP address be the one provided by digitalocean for your droplet.
 * After the DNS propogates which may take 10/20 minutes.
   * In the `Zone file` of the DNS section of digital ocean you'll see:
-    * `nebl-tipbot IN A 143.143.243.143`
+    * `pfn-tipbot IN A 143.143.243.143`
  * Go to a console/terminal on your Desktop and enter the following to command to see if the domain is live and connected to your droplet, you should see a response with your droplet's IP.
- * `ping nebl-tipbot.example.com`
-    * `PING nebl-tipbot.example.com (143.143.243.143): 56 data bytes`
+ * `ping pfn-tipbot.example.com`
+    * `PING pfn-tipbot.example.com (143.143.243.143): 56 data bytes`
 
 #### SSH into your new virualized box
 
@@ -56,16 +56,16 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 
 
-### Compile nebliod & let the blockchain sync which may take up to around 10-15 hours. (You can still progress but balances won't update until synced)
+### Compile macpuffinsd & let the blockchain sync which may take up to around 10-15 hours. (You can still progress but balances won't update until synced)
 
 
 
 
-#### Clone the Neblio tipbot git repo
+#### Clone the MacPuffin tipbot git repo
 
 * `cd`
-* `git clone https://github.com/NeblioTeam/nebl-tipbot`
-* `cd nebl-tipbot`
+* `git clone https://github.com/macpuffin/pfn-tipbot`
+* `cd pfn-tipbot`
 
 * Install Ruby 2.4.0 and rvm
  * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`cd
@@ -90,7 +90,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 * Enter droplet IP in the `bitcoin_client_extensions.rb` file where it says `Host IP`
 * ` nano bitcoin_client_extensions.rb`
-* `        { host: 'Host IP', port: 6326, ssl: false} )`
+* `        { host: 'Host IP', port: 4020, ssl: false} )`
 *    Ctrl + X + Enter to save.
 
 
@@ -123,7 +123,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### Set up the Slack integration: as an "outgoing webhook"
 
-* https://neblio.slack.com/services/new/outgoing-webhook
+* https://macpuffins.slack.com/services/new/outgoing-webhook
 * Write down the api token they show you in this page
 * Set the trigger word, use `tipbot`
 * Set the Url to the server you'll be deploying on http://example.com:4567/tip
@@ -137,7 +137,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `bundle`
 * `forever start message.js`
 * `forever start leaderboard.js`
-* `RPC_USER=neblrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=neblio bundle exec ruby tipper.rb -p 4567`
+* `RPC_USER=pfnrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=macpuffins bundle exec ruby tipper.rb -p 4567`
 *  Ctrl/Cmd + A + D to detach from the screen.
 
 
@@ -150,7 +150,7 @@ say any of the tipbot commands for example `tipbot hi` , `tipbot tip @username 1
 
 ## Security
 
-This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the neblio core wallet and SSL encryption improvement.
+This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the MacPuffins core wallet and SSL encryption improvement.
 
 ## Credits
 Forked from [coin-agnostic tipbot](https://github.com/blocktech/slack_tipbot) by [cgcardona](https://github.com/cgcardona) along with aspects of the tutorial.
